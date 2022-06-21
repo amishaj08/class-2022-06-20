@@ -10,3 +10,37 @@ knitr::opts_chunk$set(echo = TRUE)
 library(billboard)
 library(tidyverse)
 ```
+
+```{r, echo = FALSE}
+x <- wiki_hot_100s |> 
+  as_tibble() |> 
+  mutate(year = as.numeric(year)) 
+```
+
+```{r, echo = FALSE}
+#some artists appear differently. See `N Sync.
+
+temp <- x |> 
+  group_by(artist) |> 
+  summarise(freq = n()) |> 
+  arrange(desc(freq))
+
+```
+
+```{r, echo = FALSE}
+temp2 <- x |> 
+  group_by(artist) |> 
+  summarise(freq = n()) |>
+  filter(freq == 1)
+
+```
+
+
+```{r}
+x |> 
+  group_by(year) |> 
+  distinct(artist) |> 
+  summarize(unique = )
+  
+```
+
